@@ -144,7 +144,7 @@ const AboutSection: React.FC = () => {
             >
               <div className="aspect-w-16 aspect-h-9 relative overflow-hidden">
                 <img
-                  src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg"
+                  src="/src/assets/ross-james.jpg"
                   alt="Ross James"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -166,7 +166,7 @@ const AboutSection: React.FC = () => {
             >
               <div className="aspect-w-16 aspect-h-9 relative overflow-hidden">
                 <img
-                  src="https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg"
+                  src="/src/assets/deependra-mehta.jpg"
                   alt="Deependra Mehta"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
