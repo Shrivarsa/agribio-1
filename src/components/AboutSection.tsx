@@ -1,8 +1,15 @@
 import React from 'react';
-import { Users, BarChart3, Droplets, Leaf } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { Users, BarChart3, Droplets, Leaf, Handshake, Lightbulb, Heart } from 'lucide-react';
 import AnimatedCounter from './animations/AnimatedCounter';
 
 const AboutSection: React.FC = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  });
+
   const stats = [
     {
       icon: <Users className="h-8 w-8 text-green-600" />,
@@ -35,88 +42,184 @@ const AboutSection: React.FC = () => {
     }
   ];
 
+  const values = [
+    {
+      icon: <Lightbulb className="h-6 w-6" />,
+      title: "Innovation",
+      description: "Pioneering sustainable solutions through cutting-edge technology"
+    },
+    {
+      icon: <Leaf className="h-6 w-6" />,
+      title: "Sustainability",
+      description: "Committed to environmental stewardship and circular economy"
+    },
+    {
+      icon: <Heart className="h-6 w-6" />,
+      title: "Community",
+      description: "Empowering local communities through economic opportunities"
+    },
+    {
+      icon: <Handshake className="h-6 w-6" />,
+      title: "Partnership",
+      description: "Building strong relationships with stakeholders globally"
+    }
+  ];
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-16">
+        <motion.div 
+          ref={ref}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">About Agri-BioFuels Global</h2>
           <div className="w-24 h-1 bg-green-600 mx-auto mt-4 mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             We're revolutionizing the renewable energy sector by creating sustainable aviation and maritime fuels from agricultural waste.
           </p>
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 className="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h3>
+        </motion.div>
+
+        {/* Company Story */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative"
+          >
+            <div className="aspect-w-16 aspect-h-9 rounded-2xl overflow-hidden">
+              <img
+                src="https://images.pexels.com/photos/2132171/pexels-photo-2132171.jpeg"
+                alt="Agri-BioFuels facility"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-6 -right-6 bg-green-600 text-white p-6 rounded-lg shadow-xl">
+              <p className="text-2xl font-bold">Est. 2020</p>
+              <p className="text-sm">Leading the Green Revolution</p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <h3 className="text-2xl font-bold text-gray-800 mb-4">Our Story</h3>
             <p className="text-gray-600 mb-6">
-              At Agri-BioFuels Global Ltd, we're committed to transforming agricultural waste into high-value sustainable fuels, creating environmental and economic benefits throughout the value chain.
+              Founded in 2020 by Ross James and Deependra Mehta, Agri-BioFuels Global emerged from a shared vision to transform agricultural waste into sustainable aviation fuel. Our journey began with a groundbreaking partnership with Licella, whose CAT-HTR technology formed the foundation of our innovative approach.
             </p>
-            
-            <h3 className="text-2xl font-semibold text-gray-800 mb-4">Our Vision</h3>
-            <p className="text-gray-600 mb-6">
-              We envision a world where agricultural residues that were once discarded or burned now power the global transportation network, reducing carbon emissions while providing economic opportunities to farming communities.
-            </p>
-            
-            <h3 className="text-2xl font-semibold text-gray-800 mb-4">Where We Work</h3>
             <p className="text-gray-600">
-              Headquartered in London, our operations focus on emerging economies with significant agricultural output. We partner with local communities to build sustainable supply chains and production facilities that benefit all stakeholders.
+              Today, we're at the forefront of the sustainable fuel revolution, working with farmers, airlines, and shipping companies to create a cleaner future for transportation while empowering agricultural communities worldwide.
             </p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            {/* Image Carousel would go here - simplified for this implementation */}
-            <div className="rounded-lg overflow-hidden h-64 relative group">
-              <img 
-                src="https://images.pexels.com/photos/440731/pexels-photo-440731.jpeg" 
-                alt="Farmer in rice field" 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <span className="text-white font-medium">Farmer Integration Program</span>
+          </motion.div>
+        </div>
+
+        {/* Leadership Team */}
+        <div className="mb-20">
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6 }}
+            className="text-2xl font-bold text-center text-gray-800 mb-12"
+          >
+            Leadership Team
+          </motion.h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-white rounded-xl shadow-lg overflow-hidden group"
+            >
+              <div className="aspect-w-16 aspect-h-9 relative overflow-hidden">
+                <img
+                  src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg"
+                  alt="Ross James"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
               </div>
-            </div>
-            
-            <div className="rounded-lg overflow-hidden h-64 relative group">
-              <img 
-                src="https://images.pexels.com/photos/175930/pexels-photo-175930.jpeg" 
-                alt="Biofuel production facility" 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <span className="text-white font-medium">CAT-HTR Production Facility</span>
+              <div className="p-6">
+                <h4 className="text-xl font-bold text-gray-800">Ross James</h4>
+                <p className="text-green-600 mb-4">Founder & CEO</p>
+                <p className="text-gray-600">
+                  With over 20 years in renewable energy, Ross leads our mission to revolutionize sustainable fuel production.
+                </p>
               </div>
-            </div>
-            
-            <div className="rounded-lg overflow-hidden h-64 relative group">
-              <img 
-                src="https://images.pexels.com/photos/127723/pexels-photo-127723.jpeg" 
-                alt="Airplane using sustainable aviation fuel" 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <span className="text-white font-medium">Sustainable Aviation Fuel</span>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="bg-white rounded-xl shadow-lg overflow-hidden group"
+            >
+              <div className="aspect-w-16 aspect-h-9 relative overflow-hidden">
+                <img
+                  src="https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg"
+                  alt="Deependra Mehta"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
               </div>
-            </div>
-            
-            <div className="rounded-lg overflow-hidden h-64 relative group">
-              <img 
-                src="https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg" 
-                alt="Community development" 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <span className="text-white font-medium">Community Development</span>
+              <div className="p-6">
+                <h4 className="text-xl font-bold text-gray-800">Deependra Mehta</h4>
+                <p className="text-green-600 mb-4">Co-Founder & CTO</p>
+                <p className="text-gray-600">
+                  A pioneer in biomass conversion technology, Deependra drives our technical innovation and process optimization.
+                </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
-        
+
+        {/* Corporate Values */}
+        <div className="mb-20">
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6 }}
+            className="text-2xl font-bold text-center text-gray-800 mb-12"
+          >
+            Our Values
+          </motion.h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map((value, index) => (
+              <motion.div
+                key={value.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+              >
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4 text-green-600">
+                  {value.icon}
+                </div>
+                <h4 className="text-xl font-semibold text-gray-800 mb-2">{value.title}</h4>
+                <p className="text-gray-600">{value.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, index) => (
-            <div 
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
               className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow"
             >
               <div className="flex items-center justify-center mb-4">
@@ -134,7 +237,7 @@ const AboutSection: React.FC = () => {
                 {stat.suffix && <span>{stat.suffix}</span>}
               </div>
               <p className="text-sm text-gray-600 text-center">{stat.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
