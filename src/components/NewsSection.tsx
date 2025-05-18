@@ -4,7 +4,7 @@ import Button from './ui/Button';
 
 const NewsSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState('press');
-  
+
   const newsData = {
     press: [
       {
@@ -31,7 +31,7 @@ const NewsSection: React.FC = () => {
         source: 'Bloomberg Green',
         date: '2025-03-16',
         title: 'Agricultural Waste: The Next Frontier in Sustainable Aviation Fuel',
-        excerpt: 'Feature coverage of Agri-BioFuels Global's innovative approach to sustainable fuel production.',
+        excerpt: "Feature coverage of Agri-BioFuels Global's innovative approach to sustainable fuel production.",
         link: '#'
       },
       {
