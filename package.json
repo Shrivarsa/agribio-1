@@ -10,11 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "framer-motion": "^11.0.8",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-intersection-observer": "^9.8.1"
+=======
+    "@heroicons/react": "^2.2.0",
+    "framer-motion": "^11.18.2",
+    "lucide-react": "^0.344.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-intersection-observer": "^9.16.0"
+>>>>>>> 13c607c (Update AboutSection and fix AnimatedCounter import)
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
@@ -30,6 +39,12 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.3.0",
+<<<<<<< HEAD
     "vite": "^5.4.19"
   }
 }
+=======
+    "vite": "^6.3.5"
+  }
+}
+>>>>>>> 13c607c (Update AboutSection and fix AnimatedCounter import)

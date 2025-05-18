@@ -31,8 +31,13 @@ const Button: React.FC<ButtonProps> = ({
     lg: "text-lg px-6 py-3",
     full: "text-base py-2 w-full"
   };
-  
-  const iconSpacing = iconPosition === 'left' ? 'mr-2' : 'ml-2';
+
+  const iconSpacing =
+    icon && children
+      ? iconPosition === 'left'
+        ? 'mr-2'
+        : 'ml-2'
+      : '';
 
   return (
     <button
