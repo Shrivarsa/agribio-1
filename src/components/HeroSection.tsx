@@ -61,6 +61,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick, onPartnerClic
             </Button>
             <Button variant="outline" onClick={onPartnerClick}>
               Become a Partner
+              <ArrowRight className="w-4 h-4 ml-2 text-green-600" />
             </Button>
           </div>
         </div>
